@@ -8,8 +8,7 @@ import axios from 'axios'
 export default {
   name: 'App',
   components: {
-    SearchBar,
-    MovieList
+    SearchBar,MovieList
   },
   data() {
     return {
@@ -37,7 +36,7 @@ export default {
 
 <template>
   <div id="app">
-    <h1>Movie Search</h1>
+    <h1>BOOFLIX</h1>
     <SearchBar @search="searchMovies" />
     <MovieList :movies="store.movies" />
   </div>
