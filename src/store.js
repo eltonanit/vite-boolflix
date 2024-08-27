@@ -1,11 +1,9 @@
-import { reactive } from 'vue';
+ 
+import { reactive } from 'vue'
 
 export const store = reactive({
-    apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0  ',
-    apiArchetypesUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
-    CardList: [],
-    archetypesList: [],
-    archetype_search: "",
-    loading: true
-
-});
+    searchQuery: '',
+    movies: [],
+    apiKey: '0bd6ccebdf4db426f1acd075c94d2b84',  
+    apiBaseUrl: 'https://api.themoviedb.org/3',
+})
