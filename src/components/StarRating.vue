@@ -19,6 +19,7 @@ export default {
 
 
 
+
 <style scoped>
 .star-rating {
   color: gold;

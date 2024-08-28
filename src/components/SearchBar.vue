@@ -22,7 +22,7 @@ export default {
 
 <template>
   <div class="search-bar">
-    <input v-model="query" type="text" placeholder="Ritorno al fut">
+    <input v-model="query" type="text" placeholder="Cerca un film...">
     <button @click="search">Cerca</button>
   </div>
 </template>
