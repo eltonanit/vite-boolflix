@@ -36,8 +36,37 @@ export default {
 
 <template>
   <div id="app">
-    <h1>BOOFLIX</h1>
-    <SearchBar @search="searchMovies" />
-    <MovieList :movies="store.movies" />
+    <header>
+      <h1 class="logo">BOOLFLIX</h1>
+      <SearchBar @search="searchMedia" />
+    </header>
+    <main>
+      <MediaList :items="store.movies.concat(store.tvShows)" />
+    </main>
   </div>
 </template>
+<style>
+#app {
+  font-family: Arial, sans-serif;
+  background-color: #2d2b2b;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+}
+
+.logo {
+  color: #E50914;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+main {
+  padding: 2rem;
+}
+</style>
