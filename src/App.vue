@@ -1,39 +1,3 @@
-
-<script>
-import { store } from './store.js'
-import SearchBar from './components/SearchBar.vue'
-import MovieList from './components/MovieList.vue'
-import axios from 'axios'
-
-export default {
-  name: 'App',
-  components: {
-    SearchBar,MovieList
-  },
-  data() {
-    return {
-      store
-    }
-  },
-  methods: {
-    searchMovies(query) {
-      axios.get(`${store.apiBaseUrl}/search/movie`, {
-        params: {
-          api_key: store.apiKey,
-          query: query
-        }
-      })
-        .then(response => {
-          store.movies = response.data.results
-        })
-        .catch(error => {
-          console.error('Error fetching movies:', error)
-        })
-    }
-  }
-}
-</script>
-
 <template>
   <div id="app">
     <header>
@@ -41,15 +5,50 @@ export default {
       <SearchBar @search="searchMedia" />
     </header>
     <main>
-      <MediaList :items="store.movies.concat(store.tvShows)" />
+      <MediaList :items="mediaItems" />
     </main>
   </div>
 </template>
+
+<script>
+import { ref, computed } from 'vue';
+import SearchBar from './components/SearchBar.vue';
+import MediaList from './components/MediaList.vue';
+import { useStore } from './store';
+
+export default {
+  name: 'App',
+  components: {
+    SearchBar,
+    MediaList
+  },
+  setup() {
+    const store = useStore();
+
+    const searchMedia = (query) => {
+       
+      console.log('Searching for:', query);
+    };
+
+    const mediaItems = computed(() => {
+      return [...store.movies, ...store.tvShows];
+    });
+
+    return {
+      searchMedia,
+      mediaItems
+    };
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Arial, sans-serif;
-  background-color: #2d2b2b;
+  background-color: #141414;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -64,6 +63,7 @@ header {
   color: #E50914;
   font-size: 2rem;
   font-weight: bold;
+  margin: 0;
 }
 
 main {
